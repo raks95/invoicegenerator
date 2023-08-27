@@ -1,0 +1,8 @@
+{
+    "Downloader": {
+        "confidence": 100.0,
+        "path": ".images\\downloader-path.png",
+        "source": null,
+        "type": "image"
+    }
+}

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="mobile-web-app-capable" content="yes" />
+<title>OpenInvoice</title>
+<link rel="shortcut icon" href="/docp/favicon.ico" type="image/ico" />
+<link href="/public/prod/animate/animate-3.1.1.css" rel="stylesheet" type="text/css" />
+
+<link href="/docp/css/skins/odx//fonts/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/docp/thirdparty/angular/bootstrap/bootstrap.min.css" />
+<script type="text/javascript" src="https://cdn.solvvy.com/deflect/customization/enverus/solvvy.js">//do not remove</script>
+<link rel="stylesheet" href="/docp/css/skins/odx/bootstrap-navbar.css" type="text/css" />
+<link href="/docp/css/skins/odx/login.css" rel="stylesheet" type="text/css" />
+
+<link href="/docp/css/skins/odx/fonts/css/fontawesome-all.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/docp/thirdparty/angular/bootstrap/bootstrap.min.css" />
+<script src="/public/prod/jquery/jquery-2.1.1.js">//do not remove</script>
+<script src="/public/prod/bootstrap-3.1.1/dist/js/bootstrap.js">//do not remove</script>
+<script src="/docp/js/login/login.js" type="application/javascript">//do not remove</script>
+<script type="text/javascript" src="/docp/js/Pendo.js">//do not remove</script>
+<script type="text/javascript">
+var login_idpHint = "Please contact your company's OpenInvoice administrator for login instructions.";
+var login_idpLinkMsg = "Click <a href=\"{0}\">here<\/a> to sign in with your company portal.";
+var login_startWithAlert = false;
+var login_idpInitialData = null;
+try {
+if (pendo) {
+pendo.initialize({
+visitor: {
+id: pendo.DEFAULT_VISITOR_ID
+}
+});
+}
+} catch (error) {
+}
+</script></head><body style="--env-displayname:&quot;&quot;; --env-bannercolor:#000000; --env-headercolor:#006cff" class="stage ">
+<div class="company-logo"></div>
+<div class="container" id="myContainer">
+<div class="row">
+<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="form-group h2 text-center product-name">OpenInvoice</div>
+
+<ul class="nav nav-tabs">
+<li class="active">
+<a href="#1" data-toggle="tab"> Sign In </a>
+</li>
+<li>
+<a href="#2" data-toggle="tab"> Join Now </a>
+</li>
+</ul>
+<div class="tab-content form-group">
+<div class="tab-pane active" id="1">
+<div>
+<div id="loginError" class="alert alert-info" style="display: none;">
+<i class="fas fa-exclamation-triangle"></i>
+<span id="messageId"></span>
+</div>
+<form name="login" method="post" action="/docp/j_spring_security_check" autocomplete="off" class="login-form" id="login">
+<input type="hidden" name="appcontext" value="docp" />
+<div class="row">
+<div class="col-xs-5 text-left">
+<label class="form-control-static control-label">Username:</label>
+</div>
+<div class="col-xs-7 text-right">
+<a class="btn btn-link btn-sm" href="/docp/public/forgotUserNameRequest">Forgot Username?</a>
+</div>
+</div>
+<div class="row form-group">
+<div class="col-xs-12">
+<input tabindex="1" type="text" id="j_username" name="j_username" value="" required="" class="form-control" style="width: 100%; border: 1px solid #ccc;" autocomplete="off" onkeypress="submitClick(event, document.getElementById('j_username'),document.getElementById('j_password'),'Please enter your username and password','alert alert-danger');" onblur="login_checkIdp()" maxlength="100" />
+<div id="usernameValidationMsg" class="accent-6" style="display:none;">
+Username is required
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-5 text-left">
+<label class="form-control-static control-label">Password:</label>
+</div>
+<div class="col-xs-7 text-right">
+<a class="btn btn-link btn-sm" href="/docp/public/securityQuestionRequest">Forgot Password?</a>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<input tabindex="2" type="password" id="j_password" name="j_password" required="true" autocomplete="off" class="form-control" style="width: 100%; border: 1px solid #ccc;" onkeypress="submitClick(event, document.getElementById('j_username'),document.getElementById('j_password'),'Please enter your username and password','alert alert-danger');" />
+<div id="confirmPasswordValidationMsg" class="accent-6" style="display:none;">
+Password is required
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 ">
+<div class="checkbox pull-left">
+<label class="control-label">
+<input tabindex="3" id="rememberMyUserName" name="rememberMyUserName" type="checkbox" />Remember username
+</label>
+</div>
+</div>
+</div>
+<div class="row form-group">
+<div class="col-xs-12 text-center">
+<button tabindex="5" type="button" class="btn btn-success" id="loginBtn" onclick="submitOrShowError(document.getElementById('j_username'),document.getElementById('j_password'),'Please enter your username and password');">
+Sign In
+</button>
+</div>
+</div>
+<input type="hidden" name="screenDimensions" id="screenDimensions" />
+<script>
+var screenInfoElement = document.getElementById("screenDimensions");
+try {
+screenInfoElement.value = JSON.stringify({
+width: screen.width,
+height: screen.height,
+availWidth: screen.availWidth,
+availHeight: screen.availHeight,
+colorDepth: screen.colorDepth
+});
+} finally {
+}
+</script>
+</form>
+<div class="alert alert-info" data-ng-hide="closed">
+<ul class="fa-ul">
+<li>
+<span class="fa-li"><i class="fas fa-exclamation-circle fa-fw"></i> </span>
+<span class="small"><strong>Mind your device, Mind your data!</strong></span>
+</li>
+<li class="small">
+If others have access to this device, clear all of your temporary browsing data after you sign out.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="tab-pane" id="2">
+<div>
+<h4 class="text-center light">
+Join Our Supplier Network</h4>
+<div class="form-group">
+<p>
+Bring your business improved visibility, efficiency and cash flow by connecting with your customers.
+</p>
+<p>
+We invite you to join the thousands of suppliers already connected with their customers in OpenInvoice.
+</p>
+<ul class="list-unstyled">
+<li>
+If you have recently or already joined, for any Support Inquiries like
+</li>
+<li>
+<ul>
+<li>
+Login Issues
+</li>
+<li>
+Need to be added as a new user to an existing registered account
+</li>
+<li>
+Need to be Enabled by a new client
+</li>
+<li>
+Technical Issues and more
+</li>
+</ul>
+</li>
+<li>
+<a id="invoiceSupport_email" href="mailto:openinvoicesupport@enverus.com?subject=OpenInvoice%20Support:%20Login%20Page">
+Contact our Support Team.
+</a>
+</li>
+</ul>
+<p>
+If you have not already joined, please click the Join Now button.
+</p>
+<p class="text-center">
+<button id="joinNowButton" type="button" class="btn btn-success" onclick="window.location.href='/docp/public/registerBuyerText/'">
+Join Now
+</button>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 text-center">
+<button type="button" class="btn btn-link" onclick="var aboutWindow = window.open('http://www.openInvoice.com', 'menubar=no,scrollbars=yes,resizable=yes,titlebar=no,toolbar=no,status=no,width=900,height=670');aboutWindow.focus();return false;">
+About
+</button>
+|
+<button type="button" class="btn btn-link" onclick="var privacyWindow = window.open('https://www.enverus.com/privacy-policy/', 'menubar=no,scrollbars=yes,resizable=yes,titlebar=no,toolbar=no,status=no,width=900,height=670');privacyWindow.focus();return false;">
+Privacy
+</button>
+|
+<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal3">Terms
+</button>
+|
+<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal4">
+Browsers
+</button>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 text-center small">Copyright © 2023 Enverus
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="myModal3" class="modal fade" role="dialog">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">x</button>
+<h4 class="modal-title">
+OpenInvoice
+®
+Terms of Use
+</h4>
+</div>
+<div class="modal-body">
+<div id="license-terms">
+<div class="row">
+<div class="col-xs-11">
+<p><b>Welcome to the OpenInvoice&#174; suite of solutions.</b> Your successful registration with OpenInvoice connects you with a community of buyer companies and suppliers collaboratively processing purchase orders, invoices, pricing contracts and field tickets through the OpenInvoice Suite of solutions.
+</p>
+<p>
+THESE ARE THE TERMS OF USE BY WHICH YOU AS AN EMPLOYEE OR AGENT (&quot;Registered User&quot;) OF A BUYER OR SUPPLIER COMPANY ARE ALLOWED TO USE THE SERVICES MADE AVAILABLE BY OILDEX, A SERVICE OF TRANSZAP, INC. (&quot;Oildex&quot;). BY ACCESSING THE OPENINVOICE WEBSITE (&quot;Site&quot;) AND OTHERWISE USING OILDEX'S SERVICES AND SOFTWARE AVAILABLE THROUGH THE SITE, YOU ACKNOWLEDGE NOTICE OF THE TERMS OF USE SET FORTH BELOW.
+</p>
+<p class="h5">
+<strong>RIGHTS AND OBLIGATIONS OF OILDEX:</strong>
+</p>
+<ol type="a">
+<li>
+Oildex has granted your Buyer or Supplier Company a non-exclusive, non-transferable license for you to view and download copies of pages contained on the Site and access the Site for the sole purpose of collaborative processing of field tickets and invoices through the Site (&quot;Services&quot;).
+</li>
+<li>
+Oildex may modify the Site, monitor your data or restrict your access to the Site or Services at any time in its discretion.
+</li>
+<li>
+Title and copyrights to the Site and Services and any copy made by you remain with Oildex. The Site and Services are protected by copyright laws and international copyright treaties. Unauthorized use of or access to the Site or Services or failure to comply with the restrictions below will result in suspension or termination of your access to the Site and may make available to Oildex other legal remedies against the Company.
+</li>
+</ol>
+<p class="h5">
+<strong>OBLIGATIONS OF REGISTERED USERS:</strong>
+</p>
+<p>
+You must:
+</p>
+<ol type="a">
+<li>
+as a single user, access the pages of the Site and use the Services provided on the Site on only one computer at any one time;
+</li>
+<li>
+keep your unique username and password provided through your Company as confidential;
+</li>
+<li>
+notify Oildex immediately if you suspect an unauthorized party knows your username and password, has gained access to your device or is using the Site or Services;
+</li>
+<li>
+provide a traceable e-mail address from an ISP or active Internet domain, business address and phone number.
+</li>
+</ol>
+<p>
+You must not:
+</p>
+<ol type="a">
+<li>
+modify, translate, reverse engineer, decompile, disassemble, attempt to derive the source code, hack into, create derivative works based on, or copy (except for the backup copy) any pages from the Site;
+</li>
+<li>
+remove any proprietary notices, labels, or marks from the Site;
+</li>
+<li>
+send illegal, immoral or offensive material through the Site;
+</li>
+<li>
+use the Site for any communication purpose other than the Services, including but not limited to spamming, advertising, bulk e-mails, solicitations, and the like; or
+</li>
+<li>
+take any action which imposes a disproportionately large load on the Site or the Services.
+</li>
+</ol>
+<p>
+Title to and copyright of your information processed by the Services or posted on the Site remains with the buyer company. You will ensure that the information you send through the Site, to the best of your knowledge and belief, does not contain viruses and does not violate any third party's intellectual property rights. Your failure to comply with your obligations under this Agreement may expose your company to liability to Oildex as your employer or principal.
+</p>
+<p>
+If you have any questions, please contact OpenInvoice Support at
+</p>
+</div>
+<div class="col-xs-11 col-sm-offset-1">
+<p>
+email:
+<a href="mailto:openinvoicesupport@enverus.com">
+openinvoicesupport@enverus.com
+</a>
+</p>
+</div>
+<div class="col-xs-11">
+<p>
+To protect your sensitive information, we recommend that you clear your browser cache/temporary documents before you close your browser window.
+</p>
+<p>OpenInvoice is a trademark of Transzap P2P Canada, Inc. All other trademarks and service marks are the property of their respective owners. All rights reserved. Copyright &#169; 2015, Oildex, a service of Transzap, Inc. and Transzap P2P Canada Inc.
+</p>
+</div>
+<div class="col-xs-11">
+<p>
+You acknowledge that you have read and understand the terms of use and the Enverus
+<a href="https://www.enverus.com/privacy-policy/" target="_blank">
+privacy policy
+</a>
+:
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<br />
+<button type="button" class="btn btn-success" data-dismiss="modal">
+Done
+</button>
+</div>
+</div>
+</div>
+</div>
+<div id="myModal4" class="modal fade" role="dialog">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">x</button>
+<h4 class="modal-title">Browsers &amp; Devices</h4>
+</div>
+<div class="modal-body">
+<div id="col-content-browser-support">
+<div class="row">
+<div class="col-xs-12">
+<p>
+Our goal is to provide a great user experience when you're using OpenInvoice.
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<p>
+Given the multitude of devices and browsers out there, we might not be perfect.  At least not yet.
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<p>
+Get the most out of OpenInvoice by using a modern browser with enhanced features, security and performance.
+</p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<p class="h5"><strong>We'd like to hear from you if things aren't working properly on current versions of:</strong></p>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-1 hidden-sm"></div>
+<div class="col-xs-12 col-sm-offset-1">
+<ul class="list-unstyled">
+<li id="browserDesc2">
+<a id="browserLink2" target="_blank" href="https://www.google.com/chrome/">
+Google Chrome
+</a>
+(Supported Platforms)
+</li>
+<li id="browserDesc1">
+<a id="browserLink1" target="_blank" href="https://www.microsoft.com/en-us/edge/features">
+Microsoft Edge
+</a>
+(Supported Platforms)
+</li>
+<li id="browserDesc3">
+<a id="browserLink3" target="_blank" href="http://www.mozilla.org/en-US/firefox/new/">
+Mozilla Firefox
+</a>
+(Supported Platforms)
+</li>
+<li id="browserDesc4">
+<a id="browserLink4" target="_blank" href="http://support.apple.com/en-us/HT204416">
+Apple Safari
+</a>
+(Mac OS X and iOS)
+</li>
+</ul>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<p>
+<span class="h5"><strong>Your OS:</strong></span>
+UNKNOWN
+(
+version
+.
+)
+<br />
+<span class="h5"><strong>Your Browser:</strong></span>
+UNKNOWN
+(
+version
+.
+)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<br />
+<button type="button" class="btn btn-success" data-dismiss="modal">
+Done
+</button>
+</div>
+</div>
+</div>
+</div>
+<div id="staySignedInModal" class="modal fade modal-type-default in" role="dialog">
+<div class="modal-dialog modal-md">
+<div class="modal-content">
+<div class="modal-header adp-alert-dialog adp-standard-modal-dialog">
+<span class="modal-title ">
+<i class="fas fa-exclamation-triangle fa-1x text-danger"></i>
+You have timed out.
+</span>
+</div>
+<div class="adp-standard-modal-dialog">
+<div class="modal-body msg">
+<span class="text">
+Your session has timed out due to inactivity. Would you like to stay signed in?
+</span>
+</div>
+</div>
+<div class="modal-footer adp-standard-modal-dialog">
+<div class="adp-btn-dialog">
+<button type="button" class="btn btn-success" data-dismiss="modal" onClick="window.location.href = '/docp/corp/main/login';">
+Stay Signed In
+</button>
+<button type="button" class="btn btn-direct" data-dismiss="modal">
+Close
+</button>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+$("#j_username").focus();
+login_checkIdp_atArrival();
+}, {once: true});
+</script></body>
+</html>
