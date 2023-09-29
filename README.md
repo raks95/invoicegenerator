@@ -1,11 +1,15 @@
-# Template: Robot Framework - Minimal
+# Steps To Execute Invoice Generator
 
-This is the simplest template to start from.
+Requirement: https://github.com/raks95/invoicegenerator
 
-- Get started from a simple task template in `tasks.robot`.
-  - Uses [Robot Framework](https://robocorp.com/docs/languages-and-frameworks/robot-framework/basics) syntax.
-- You can configure your robot `robot.yaml`.
-- You can configure dependencies in `conda.yaml`.
+-  For The First Time Please execute this command 
+    - curl -o rcc.exe https://downloads.robocorp.com/rcc/releases/latest/windows64/rcc.exe
+    - Set the Download Path
+
+- Download the .
+  - step 1: 
+    Step 2: rcc run
+
 
 ## Learning materials
 
