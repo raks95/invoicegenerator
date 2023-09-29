@@ -6,8 +6,7 @@ Requirement: https://github.com/raks95/invoicegenerator
     - curl -o rcc.exe https://downloads.robocorp.com/rcc/releases/latest/windows64/rcc.exe
     - Set the Download Path
 
-- Download the .
-  - step 1: 
+- step 1: 
     Step 2: rcc run
 
 
