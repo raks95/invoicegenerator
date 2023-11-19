@@ -18,13 +18,13 @@ xpath=//ul[@class='ng-tns-c7-2 sub-menu ng-star-inserted']/li[@id='navbarMenuIte
 *** Variables ***
 
 #${PDF_URL}         https://www.openinvoice.com/docp/openInvoice/main/statusListAttachmentsAction?printFriendlyPreview=true&documentId=213036098&type=Invoice
-#${OUTPUT_DIR}      C:\\Users\\saira\\OneDrive\\Desktop\\DownloadedInvoice\\
+${OUTPUT_DIR}      C:\\Users\\saira\\OneDrive\\Desktop\\DownloadedInvoice\\
 *** Keywords ***
 
 *** Tasks ***
 Store WebPage Content
     Set Download Directory    ${OUTPUT_DIR}
-    Open Headless Chrome Browser    https://www.openinvoice.com/docp/public/OILogin.xhtml
+    Open Chrome Browser    https://www.openinvoice.com/docp/public/OILogin.xhtml
     Maximize Browser Window
     Input Text    //input[@id='j_username']    salestax@saltapllc.com
     Input Password    //input[@name = 'j_password']    ToBotOrNotR3
@@ -62,5 +62,5 @@ Store WebPage Content
     Click Element When Visible    sign-out
     Click Element When Visible    revit_form_Button_0_label
     Sleep    20
-    OperatingSystem.Move File    ${OUTPUT_DIR}\\viewAttachment.pdf  ${OUTPUT_DIR}\\MainInvoice.pdf
+    OperatingSystem.Move File    ${OUTPUT_DIR}\\viewAttachment.pdf  ${OUTPUT_DIR}\\523812.pdf
     Log    Task Completed
