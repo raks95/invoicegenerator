@@ -1,14 +1,11 @@
-# Template: Robot Framework - Minimal
+# Steps To Install Invoice Generator
 
-This is the simplest template to start from.
+Requirement: https://github.com/raks95/invoicegenerator
 
-- Get started from a simple task template in `tasks.robot`.
-  - Uses [Robot Framework](https://robocorp.com/docs/languages-and-frameworks/robot-framework/basics) syntax.
-- You can configure your robot `robot.yaml`.
-- You can configure dependencies in `conda.yaml`.
+-  For The First Time Please execute this command
+    - Download the above repository to the local machine.
+    - navigate to the following path in your local machine and type `cmd` in the folder explorer.
+    - Set the Download Path with the following pattern ` C:\\Users\\saira\\OneDrive\\Desktop\\DownloadedInvoice ` in the file `task.robot`, This will be the place where we will have the downloaded files.
+    - execute the following command ` curl -o rcc.exe https://downloads.robocorp.com/rcc/releases/latest/windows64/rcc.exe `
 
-## Learning materials
-
-- [Robocorp Developer Training Courses](https://robocorp.com/docs/courses)
-- [Documentation links on Robot Framework](https://robocorp.com/docs/languages-and-frameworks/robot-framework)
-- [Example bots in Robocorp Portal](https://robocorp.com/portal)
+- execute this command `rcc run` every time you want to start the process.

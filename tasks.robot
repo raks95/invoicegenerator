@@ -12,6 +12,15 @@ Library    XML
 Library    String
 Library    RPA.Windows
 Library    RPA.Excel.Application
+Library    RPA.PDF
+Library    RPA.Excel.Files
+Library    Collections
+Library    RPA.Tables
+Library    RPA.FTP
+Library    XML
+Library    String
+Library    RPA.Windows
+Library    RPA.Excel.Application
 Library    RPA.Desktop
 
 *** Variables ***
@@ -55,14 +64,35 @@ Fetching The Excel records, Downloading Invoice and Updating Excel
 Login
     Set Download Directory    ${OUTPUT_DIR} 
     Open Chrome Browser     ${URL}
+Logging into Application
+    Login
+
+Removing Data From Cancel buttons
+    Removing Data
+
+Fetching The Excel records, Downloading Invoice and Updating Excel
+    Fetch Excel Records  
+
+*** Keywords ***
+Login
+    Set Download Directory    ${OUTPUT_DIR} 
+    Open Chrome Browser     ${URL}
     Maximize Browser Window
     Input Text    //input[@id='j_username']    salestax@saltapllc.com
     Input Password    //input[@name='j_password']    ToBotOrNotR3
     Click Button    //button[@id='loginBtn']
     Wait Until Page Contains Element    navbarMenuItem-Invoice    50
+    Input Password    //input[@name='j_password']    ToBotOrNotR3
+    Click Button    //button[@id='loginBtn']
+    Wait Until Page Contains Element    navbarMenuItem-Invoice    50
     Mouse Over    navbarMenuItem-Invoice
     Wait Until Page Contains Element    navbarSubItem-InvoiceSearch    50
+    Wait Until Page Contains Element    navbarSubItem-InvoiceSearch    50
     Click Element When Visible    navbarSubItem-InvoiceSearch
+    Wait Until Page Contains Element    ${Cancel_path}     50
+
+Removing Data
+    ${cancel_buttons}    Get WebElements    ${Cancel_path}
     Wait Until Page Contains Element    ${Cancel_path}     50
 
 Removing Data
