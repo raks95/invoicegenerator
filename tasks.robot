@@ -25,9 +25,9 @@ Library    RPA.Desktop
 
 *** Variables ***
 ${Cancel_path}   //div[@class='text-core']/div[@class='text-wrap']//a[@class='text-remove']
-${OUTPUT_DIR}    C:\\Users\\saira\\OneDrive\\Desktop\\DownloadedInvoice
-${Renamed_Invoice}  C:\\Users\\saira\\OneDrive\\Desktop\\RenamedInvoices
-${Excel_path}   C:\\Users\\saira\\OneDrive\\Desktop\\InvoicePullData.xlsx
+${OUTPUT_DIR}    C:\\Users\\saira\\Desktop\\DownloadedInvoice
+${Renamed_Invoice}  C:\\Users\\saira\\Desktop\\RenamedInvoices
+${Excel_path}   C:\\Users\\saira\\Desktop\\InvoicePullData.xlsx
 
 *** Variables ***
 ${URL}    https://www.openinvoice.com/docp/public/OILogin.xhtml
@@ -60,18 +60,7 @@ Removing Data From Cancel buttons
 Fetching The Excel records, Downloading Invoice and Updating Excel
     Fetch Excel Records  
 
-*** Keywords ***
-Login
-    Set Download Directory    ${OUTPUT_DIR} 
-    Open Chrome Browser     ${URL}
-Logging into Application
-    Login
 
-Removing Data From Cancel buttons
-    Removing Data
-
-Fetching The Excel records, Downloading Invoice and Updating Excel
-    Fetch Excel Records  
 
 *** Keywords ***
 Login
@@ -82,18 +71,11 @@ Login
     Input Password    //input[@name='j_password']    ToBotOrNotR3
     Click Button    //button[@id='loginBtn']
     Wait Until Page Contains Element    navbarMenuItem-Invoice    50
-    Input Password    //input[@name='j_password']    ToBotOrNotR3
-    Click Button    //button[@id='loginBtn']
-    Wait Until Page Contains Element    navbarMenuItem-Invoice    50
     Mouse Over    navbarMenuItem-Invoice
-    Wait Until Page Contains Element    navbarSubItem-InvoiceSearch    50
     Wait Until Page Contains Element    navbarSubItem-InvoiceSearch    50
     Click Element When Visible    navbarSubItem-InvoiceSearch
     Wait Until Page Contains Element    ${Cancel_path}     50
 
-Removing Data
-    ${cancel_buttons}    Get WebElements    ${Cancel_path}
-    Wait Until Page Contains Element    ${Cancel_path}     50
 
 Removing Data
     ${cancel_buttons}    Get WebElements    ${Cancel_path}
@@ -152,15 +134,10 @@ Downloading Invoice
                         Run Keyword    Write Short_Desc To Excel    ${invoiceNumbers}    ${1000}    ${row_Number}
                         Run Keyword    Write Long_Desc To Excel     ${invoiceNumbers}    ${1000_Long}    ${row_Number}
                         Switch Window    ${handles}[0]
-                        TRY
                         Wait Until Page Contains Element    Invoice_navItem_label    60
                         Mouse Over     Invoice_navItem_label
                         Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     60
                         Click Element When Visible        Invoice_ttd_Invoice_InvoiceSearch
-                        EXCEPT    message
-                            Close Browser
-                            Run Keyword    Login
-                        END
                         
                     EXCEPT  
                         Close Browser
@@ -205,9 +182,9 @@ Downloading Invoice
             Run Keyword    Write Short_Desc To Excel    ${invoiceNumbers}    ${2001}    ${row_Number}
             Run Keyword    Write Long_Desc To Excel     ${invoiceNumbers}    ${2001_Long}    ${row_Number}
         # Update status when invoice is not found - Modify this according to your needs
-            Wait Until Page Contains Element    Invoice_navItem_label    30
+            Wait Until Page Contains Element    Invoice_navItem_label    60
             Mouse Over     Invoice_navItem_label
-            Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     30
+            Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     60
             Click Element When Visible     Invoice_ttd_Invoice_InvoiceSearch
             Sleep    10
         END 
