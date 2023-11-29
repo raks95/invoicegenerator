@@ -24,13 +24,13 @@ Library    RPA.Excel.Application
 Library    RPA.Desktop
 
 *** Variables ***
-${Cancel_path}   //div[@class='text-core']/div[@class='text-wrap']//a[@class='text-remove']
 ${OUTPUT_DIR}    C:\\Users\\saira\\Desktop\\DownloadedInvoice
 ${Renamed_Invoice}  C:\\Users\\saira\\Desktop\\RenamedInvoices
 ${Excel_path}   C:\\Users\\saira\\Desktop\\InvoicePullData.xlsx
 
 *** Variables ***
 ${URL}    https://www.openinvoice.com/docp/public/OILogin.xhtml
+${Cancel_path}   //div[@class='text-core']/div[@class='text-wrap']//a[@class='text-remove']
 ${my_integer}    1
 ${current_row_index}    1  # Initialize with the starting row index
 ${filename}    ""
