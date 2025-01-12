@@ -18,7 +18,7 @@ Library    RPA.Desktop
 *** Variables ***
 ${OUTPUT_DIR}    C:\\Users\\saira\\Desktop\\DownloadedInvoice
 ${Renamed_Invoice}  C:\\Users\\saira\\Desktop\\RenamedInvoices1
-${Excel_path}    C:\\Users\\saira\\Desktop\\InvoicePull.xlsx
+${Excel_path}    C:\\Users\\saira\\Desktop\\Invoice Project stuff\\BBInvoicePullDataFor202412.xlsx
  
 
 *** Variables ***
@@ -77,8 +77,8 @@ Login
     Set Download Directory    ${OUTPUT_DIR}
     Open Chrome Browser     ${URL}
     Maximize Browser Window
-    Input Text    //input[@id='j_username']    salestax@saltapllc.com
-    Input Password    //input[@name='j_password']    ToBotOrNotR3
+    Input Text    //input[@id='j_username']    hwillis@saltapllc.com
+    Input Password    //input[@name='j_password']    Blackbeardguest7
     Click Button    //button[@id='loginBtn']
     Wait Until Page Contains Element    navbarMenuItem-Invoice    50
     Mouse Over    navbarMenuItem-Invoice
@@ -158,8 +158,8 @@ Downloading Invoice
                         Switch Window    ${handles}[0]
                         Wait Until Page Contains Element    Invoice_navItem_label    60
                         Mouse Over     Invoice_navItem_label
-                        Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     60
-                        Click Element When Visible        Invoice_ttd_Invoice_InvoiceSearch
+                        Wait Until Page Contains Element    Invoice_ttd_ManageInvoices_InvoiceSearch     60
+                        Click Element When Visible        Invoice_ttd_ManageInvoices_InvoiceSearch
                     EXCEPT  
                         Close Browser
                         Run Keyword    Login    
@@ -302,10 +302,11 @@ Downloading Invoice
                         # Update status for multiple invoices - Modify this according to your needs
                         Close Window    
                         Switch Window    ${handles}[0]
-                        Wait Until Page Contains Element    Invoice_navItem_label    60
+                        Sleep    3
+                        Wait Until Page Contains Element    Invoice_navItem_label  60
                         Mouse Over     Invoice_navItem_label
-                        Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     60
-                        Click Element When Visible        Invoice_ttd_Invoice_InvoiceSearch
+                        Wait Until Page Contains Element    Invoice_ttd_ManageInvoices_InvoiceSearch     60
+                        Click Element When Visible        Invoice_ttd_ManageInvoices_InvoiceSearch
                        
                 EXCEPT  
                     Run Keyword    Update Excel Status     ${invoiceNumbers}    1103    ${row_number}
@@ -323,8 +324,8 @@ Downloading Invoice
         # Update status when invoice is not found - Modify this according to your needs
             Wait Until Page Contains Element    Invoice_navItem_label    60
             Mouse Over     Invoice_navItem_label
-            Wait Until Page Contains Element    Invoice_ttd_Invoice_InvoiceSearch     60
-            Click Element When Visible     Invoice_ttd_Invoice_InvoiceSearch
+            Wait Until Page Contains Element    Invoice_ttd_ManageInvoices_InvoiceSearch     60
+            Click Element When Visible     Invoice_ttd_ManageInvoices_InvoiceSearch
             Sleep    10
         END
 
